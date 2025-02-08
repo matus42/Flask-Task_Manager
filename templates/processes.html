@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Running Processes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/processes">Running Processes</a></li>
+            <li><a href="/system-info">System Info</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h1>Running Processes</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>PID</th>
+                    <th>Name</th>
+                    <th>Username</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for proc in processes %}
+                <tr>
+                    <td>{{ proc.pid }}</td>
+                    <td>{{ proc.name }}</td>
+                    <td>{{ proc.username }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

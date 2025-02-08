@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 import psutil
+import platform
 from datetime import datetime
 
 app = Flask(__name__)
@@ -18,7 +19,6 @@ def index():
     boot_time = psutil.boot_time()
     network_info = psutil.net_io_counters()
 
-    # Convert stats to human-readable format
     stats = {
         'cpu_usage': cpu_usage,
         'memory_used': memory_info.used // (1024 ** 2),  # in MB
@@ -31,6 +31,26 @@ def index():
     }
 
     return render_template('index.html', stats=stats)
+
+@app.route('/processes')
+def processes():
+    # Get running processes
+    processes = []
+    for proc in psutil.process_iter(['pid', 'name', 'username']):
+        processes.append(proc.info)
+    return render_template('processes.html', processes=processes)
+
+@app.route('/system-info')
+def system_info():
+    # Get system information
+    system_info = {
+        'os': platform.system(),
+        'os_version': platform.version(),
+        'python_version': platform.python_version(),
+        'hostname': platform.node(),
+        'processor': platform.processor(),
+    }
+    return render_template('system_info.html', system_info=system_info)
 
 if __name__ == '__main__':
     app.run(debug=True)

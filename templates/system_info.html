@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>System Stats</title>
+    <title>System Info</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
@@ -15,31 +15,27 @@
         </ul>
     </nav>
     <div class="container">
-        <h1>System Stats</h1>
+        <h1>System Info</h1>
         <div class="stats">
             <div class="stat-card">
-                <h2>CPU Usage</h2>
-                <p>{{ stats.cpu_usage }}%</p>
+                <h2>OS</h2>
+                <p>{{ system_info.os }}</p>
             </div>
             <div class="stat-card">
-                <h2>Memory Usage</h2>
-                <p>{{ stats.memory_used }} MB / {{ stats.memory_total }} MB</p>
+                <h2>OS Version</h2>
+                <p>{{ system_info.os_version }}</p>
             </div>
             <div class="stat-card">
-                <h2>Disk Usage</h2>
-                <p>{{ stats.disk_used }} GB / {{ stats.disk_total }} GB</p>
+                <h2>Python Version</h2>
+                <p>{{ system_info.python_version }}</p>
             </div>
             <div class="stat-card">
-                <h2>Boot Time</h2>
-                <p>{{ stats.boot_time | timestamp_to_date }}</p>
+                <h2>Hostname</h2>
+                <p>{{ system_info.hostname }}</p>
             </div>
             <div class="stat-card">
-                <h2>Network Sent</h2>
-                <p>{{ stats.network_sent }} MB</p>
-            </div>
-            <div class="stat-card">
-                <h2>Network Received</h2>
-                <p>{{ stats.network_recv }} MB</p>
+                <h2>Processor</h2>
+                <p>{{ system_info.processor }}</p>
             </div>
         </div>
     </div>
