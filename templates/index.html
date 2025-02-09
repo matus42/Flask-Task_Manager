@@ -43,5 +43,25 @@
             </div>
         </div>
     </div>
+<script>
+    function updateData() {
+        fetch('/data')  // Make a request to the /data route
+            .then(response => response.json())
+            .then(data => {
+                document.querySelector('.stat-card:nth-child(1) p').textContent = data.cpu_usage + '%';
+                document.querySelector('.stat-card:nth-child(2) p').textContent = data.memory_used + ' MB / ' + data.memory_total + ' MB';
+                document.querySelector('.stat-card:nth-child(3) p').textContent = data.disk_used + ' GB / ' + data.disk_total + ' GB';
+                document.querySelector('.stat-card:nth-child(4) p').textContent = data.boot_time;
+                document.querySelector('.stat-card:nth-child(5) p').textContent = data.network_sent + ' MB';
+                document.querySelector('.stat-card:nth-child(6) p').textContent = data.network_recv + ' MB';
+            });
+    }
+
+    // Call updateData initially to populate the data
+    updateData();
+
+    // Update the data every 5 seconds (5000 milliseconds)
+    setInterval(updateData, 5000);
+</script>    
 </body>
 </html>

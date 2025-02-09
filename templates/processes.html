@@ -35,5 +35,25 @@
             </tbody>
         </table>
     </div>
+<script>
+    function updateProcesses() {
+        fetch('/processes_data')
+            .then(response => response.json())
+            .then(processes => {
+                const tableBody = document.querySelector('table tbody');
+                tableBody.innerHTML = ''; // Clear existing rows
+
+                processes.forEach(proc => {
+                    const row = tableBody.insertRow();
+                    row.insertCell().textContent = proc.pid;
+                    row.insertCell().textContent = proc.name;
+                    row.insertCell().textContent = proc.username;
+                });
+            });
+    }
+
+    updateProcesses();
+    setInterval(updateProcesses, 5000);
+</script>    
 </body>
 </html>

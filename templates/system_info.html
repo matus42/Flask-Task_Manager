@@ -39,5 +39,21 @@
             </div>
         </div>
     </div>
+<script>
+    function updateSystemInfo() {
+        fetch('/system_info_data')
+            .then(response => response.json())
+            .then(system_info => {
+                document.querySelector('.stat-card:nth-child(1) p').textContent = system_info.os;
+                document.querySelector('.stat-card:nth-child(2) p').textContent = system_info.os_version;
+                document.querySelector('.stat-card:nth-child(3) p').textContent = system_info.python_version;
+                document.querySelector('.stat-card:nth-child(4) p').textContent = system_info.hostname;
+                document.querySelector('.stat-card:nth-child(5) p').textContent = system_info.processor;
+            });
+    }
+
+    updateSystemInfo();
+    setInterval(updateSystemInfo, 5000);
+</script>
 </body>
 </html>
