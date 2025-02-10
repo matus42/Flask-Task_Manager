@@ -3,7 +3,7 @@ import psutil
 import platform
 from datetime import datetime
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="static")
 
 @app.route('/data')
 def get_data():

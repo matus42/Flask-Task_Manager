@@ -16,3 +16,4 @@ instance/
 # IDE
 .vscode/
 .idea/
+.deploy.md
